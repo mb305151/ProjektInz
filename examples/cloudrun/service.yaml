@@ -1,0 +1,13 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: todo-api
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/PROJECT_ID/todo-api:latest
+          env:
+            - name: DATABASE_URL
+              value: "postgres://example:example@db-host:5432/todo"
+      containerConcurrency: 80
